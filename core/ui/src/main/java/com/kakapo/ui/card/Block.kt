@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.outlined.QuestionAnswer
-import androidx.compose.material.icons.outlined.QuestionMark
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -20,7 +19,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.kakapo.designsystem.theme.ChatWithMeTheme
+import com.kakapo.designsystem.theme.CWMTheme
 import com.kakapo.ui.AppPreview
 import com.kakapo.ui.R
 import com.kakapo.ui.model.Menu
@@ -106,7 +105,7 @@ private fun PreviewBlockHeader() {
     val helpMenu = Menu(id = 2, name = R.string.ask_a_question, icon = Icons.Outlined.QuestionAnswer)
     val listSettingsMenu = listOf(settingsMenu, settingsMenu, settingsMenu, settingsMenu, settingsMenu)
     val listHelpMenu = listOf(helpMenu, helpMenu, helpMenu)
-    ChatWithMeTheme {
+    CWMTheme {
         Column {
             BlockMenu(
                 listSettingMenu = listSettingsMenu,

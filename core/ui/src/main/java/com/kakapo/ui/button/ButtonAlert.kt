@@ -4,12 +4,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kakapo.designsystem.component.CWMTextButton
-import com.kakapo.designsystem.theme.ChatWithMeTheme
+import com.kakapo.designsystem.theme.CWMTheme
+import com.kakapo.designsystem.theme.KarlaFontFamily
 import com.kakapo.ui.AppPreview
 import com.kakapo.ui.R
 
@@ -45,11 +47,11 @@ internal fun ButtonAlertHighestPriority(onHelpClicked: () -> Unit, onConfirmClic
 }
 
 @Composable
-internal fun ButtonAlertHorizontal(onCancelClicked: () -> Unit, onDiscardClicked: () -> Unit) {
+internal fun ButtonAlertHorizontal(modifier: Modifier  = Modifier,onCancelClicked: () -> Unit, onDiscardClicked: () -> Unit) {
     Row(
         modifier = Modifier
             .widthIn(164.dp)
-            .heightIn(54.dp),
+            .heightIn(54.dp).then(modifier),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         CWMTextButton(
@@ -58,7 +60,7 @@ internal fun ButtonAlertHorizontal(onCancelClicked: () -> Unit, onDiscardClicked
                 Text(
                     text = stringResource(id = R.string.cancel),
                     color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
+                    style = MaterialTheme.typography.titleMedium.copy(fontFamily = KarlaFontFamily),
                 )
             }
         )
@@ -68,7 +70,7 @@ internal fun ButtonAlertHorizontal(onCancelClicked: () -> Unit, onDiscardClicked
                 Text(
                     text = stringResource(id = R.string.discard),
                     color = MaterialTheme.colorScheme.error,
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
+                    style = MaterialTheme.typography.titleMedium.copy(fontFamily = KarlaFontFamily),
                 )
             }
         )
@@ -76,18 +78,19 @@ internal fun ButtonAlertHorizontal(onCancelClicked: () -> Unit, onDiscardClicked
 }
 
 @Composable
-internal fun ButtonAlertVertical(onSelectAnother: () -> Unit, onCancelClicked: () -> Unit) {
+internal fun ButtonAlertVertical(modifier: Modifier = Modifier,onSelectAnother: () -> Unit, onCancelClicked: () -> Unit) {
     Column(
         modifier = Modifier
             .widthIn(170.dp)
-            .heightIn(86.dp),
-        verticalArrangement = Arrangement.SpaceBetween
+            .heightIn(86.dp).then(modifier),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.End
     ) {
         CWMTextButton(
             onClick = onSelectAnother,
             text = {
                 Text(
-                    text = stringResource(id = R.string.selecte_another_chat),
+                    text = stringResource(id = R.string.selected_another_chat),
                     color = MaterialTheme.colorScheme.primary,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
                 )
@@ -109,7 +112,7 @@ internal fun ButtonAlertVertical(onSelectAnother: () -> Unit, onCancelClicked: (
 @AppPreview
 @Composable
 private fun PreviewButtonAlertHighestPriority() {
-    ChatWithMeTheme {
+    CWMTheme {
         Column {
             ButtonAlertHighestPriority(onHelpClicked = {}, onConfirmClicked = {})
             ButtonAlertHorizontal(onCancelClicked = { /*TODO*/ }, onDiscardClicked = {})

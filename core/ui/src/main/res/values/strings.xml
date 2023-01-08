@@ -7,9 +7,18 @@
     <string name="confirm">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="discard">Discard</string>
-    <string name="selecte_another_chat">Select Another Chat</string>
+    <string name="selected_another_chat">Select Another Chat</string>
     <string name="cancel_forward">Cancel Forward</string>
     <string name="settings">Settings</string>
     <string name="folders">Folders</string>
     <string name="ask_a_question">Ask a Question</string>
+    <string name="alert_forward">Do you want to cancel forwarding or to forward messages to different chat?</string>
+    <string name="title">Title</string>
+    <string name="options">Options</string>
+    <string name="discard_changes">Discard Changes?</string>
+    <string name="alert_discard">Are you sure you want to discard all changes?</string>
+    <string name="number_blocked">Number Blocked</string>
+    <string name="number_is_blocked">Number is Blocked</string>
+    <string name="cancel_forward_title">Cancel Forward?</string>
+    <string name="shiping_info">Shiping Info</string>
 </resources>

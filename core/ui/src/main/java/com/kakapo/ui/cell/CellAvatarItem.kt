@@ -1,6 +1,5 @@
 package com.kakapo.ui.cell
 
-import android.graphics.Paint.Style
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -13,7 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.kakapo.designsystem.theme.ChatWithMeTheme
+import com.kakapo.designsystem.theme.CWMTheme
 import com.kakapo.ui.AppPreview
 import com.kakapo.ui.R
 
@@ -44,7 +43,7 @@ fun CellAvatarItem() {
 @AppPreview
 @Composable
 private fun PreviewCellAvatarItem() {
-    ChatWithMeTheme {
+    CWMTheme {
         CellAvatarItem()
     }
 }

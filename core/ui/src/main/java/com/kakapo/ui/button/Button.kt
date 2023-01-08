@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kakapo.designsystem.component.CWMButton
-import com.kakapo.designsystem.theme.ChatWithMeTheme
+import com.kakapo.designsystem.theme.CWMTheme
 import com.kakapo.ui.AppPreview
 import com.kakapo.ui.R
 
@@ -72,7 +72,7 @@ fun ButtonLarge(
 @AppPreview
 @Composable
 private fun PreviewButtonRegular() {
-    ChatWithMeTheme {
+    CWMTheme {
         ButtonRegular(onClick = { /*TODO*/ }, textButton = R.string.add)
     }
 }
@@ -80,7 +80,7 @@ private fun PreviewButtonRegular() {
 @AppPreview
 @Composable
 private fun PreviewButtonMedium() {
-    ChatWithMeTheme {
+    CWMTheme {
         ButtonMedium(onClick = { /*TODO*/ }, textButton = R.string.copy)
     }
 }
@@ -88,7 +88,7 @@ private fun PreviewButtonMedium() {
 @AppPreview
 @Composable
 private fun PreviewButtonLarge(){
-    ChatWithMeTheme {
+    CWMTheme {
         ButtonLarge(onClick = { /*TODO*/ }, textButton = R.string.clear_cache)
     }
 }

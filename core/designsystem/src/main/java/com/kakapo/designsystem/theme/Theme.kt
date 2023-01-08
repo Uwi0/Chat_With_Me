@@ -66,7 +66,7 @@ private val ChatWithMeLightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun ChatWithMeTheme(
+fun CWMTheme(
     isDarkTheme: Boolean = isSystemInDarkTheme(),
     isDynamicColor: Boolean = true,
     content: @Composable () -> Unit
