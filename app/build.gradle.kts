@@ -46,6 +46,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:ui"))
+    implementation(project(":feature:home"))
 
     implementation(libs.accompanist.systemuicontroller)
 
@@ -57,11 +59,6 @@ dependencies {
 
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.runtime.tracing)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material3.windowSizeClass)
-    implementation(libs.androidx.compose.material.iconsExtended)
-
-    implementation(libs.accompanist.adaptive)
 
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.navigation.compose)

@@ -19,7 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.offset
 import com.kakapo.chatwithme.R
-import com.kakapo.chatwithme.utils.CWMNavigationContentPosition
+import com.kakapo.ui.utils.CWMNavigationContentPosition
 
 @Composable
 fun CWMNavigationRail(
@@ -29,11 +29,11 @@ fun CWMNavigationRail(
     onDrawerClicked: () -> Unit = {}
 ) {
     NavigationRail(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxHeight(),
         containerColor = MaterialTheme.colorScheme.inverseOnSurface
     ) {
         Layout(
-            modifier = Modifier.widthIn(80.dp),
+            modifier = Modifier.widthIn(max = 80.dp),
             content = {
                 Column(
                     modifier = Modifier.layoutId(LayoutType.HEADER),

@@ -7,7 +7,9 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.google.accompanist.adaptive.calculateDisplayFeatures
 import com.kakapo.chatwithme.ui.CWMApp
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +17,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             val windowSize = calculateWindowSizeClass(activity = this)
             val displayFeatures = calculateDisplayFeatures(activity = this)
-
             CWMApp(windowSize = windowSize, displayFeature = displayFeatures)
         }
     }

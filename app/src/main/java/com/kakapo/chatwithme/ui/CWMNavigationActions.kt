@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.kakapo.chatwithme.R
+import com.kakapo.home.navigation.HOME_ROUTE
 
 object CWMRoute {
     const val HOME = "HomeRoute"
@@ -40,7 +41,7 @@ class CWMNavigationActions(private val navController: NavController) {
 
 val TOP_LEVEL_DESTINATIONS = listOf(
     CWMTopLevelDestination(
-        route = CWMRoute.HOME,
+        route = HOME_ROUTE,
         selectedIcon = Icons.Default.Message,
         unselectedIcon = Icons.Default.Message,
         iconTextId = R.string.home

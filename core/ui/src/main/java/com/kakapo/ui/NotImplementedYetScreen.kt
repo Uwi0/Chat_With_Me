@@ -1,4 +1,4 @@
-package com.kakapo.chatwithme.ui
+package com.kakapo.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,10 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.kakapo.chatwithme.R
 
 @Composable
-internal fun NotImplementedYet(
+fun NotImplementedYet(
     modifier: Modifier = Modifier,
     screenTitle: String
 ){

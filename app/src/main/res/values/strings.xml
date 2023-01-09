@@ -6,6 +6,4 @@
     <string name="settings">Settings</string>
     <string name="menu">Menu</string>
     <string name="navigation_drawer">Navigation Drawer</string>
-    <string name="empty_screen_title">%s Screen Under Construction</string>
-    <string name="empty_screen_subtitle">This screen is still under construction</string>
 </resources>

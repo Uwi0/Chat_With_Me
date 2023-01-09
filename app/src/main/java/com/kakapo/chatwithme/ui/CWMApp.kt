@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
@@ -23,7 +22,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.window.layout.DisplayFeature
 import androidx.window.layout.FoldingFeature
 import com.kakapo.chatwithme.ui.*
-import com.kakapo.chatwithme.utils.*
+import com.kakapo.home.navigation.HOME_ROUTE
+import com.kakapo.home.navigation.homeScreen
+import com.kakapo.ui.NotImplementedYet
+import com.kakapo.ui.utils.*
 import kotlinx.coroutines.launch
 
 @Composable
@@ -118,7 +120,7 @@ private fun CWMNavigationWrapper(
         CWMNavigationActions(navController)
     }
     val navBackEntry by navController.currentBackStackEntryAsState()
-    val selectedDestination = navBackEntry?.destination?.route ?: CWMRoute.HOME
+    val selectedDestination = navBackEntry?.destination?.route ?: HOME_ROUTE
 
     if (navigationType == CWMNavigationType.PERMANENT_NAVIGATION_DRAWER) {
         PermanentNavigationDrawer(drawerContent = {
@@ -226,11 +228,9 @@ private fun CWMNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = CWMRoute.HOME
+        startDestination = HOME_ROUTE
     ) {
-        composable(CWMRoute.HOME) {
-            NotImplementedYet(screenTitle = "Home")
-        }
+        homeScreen(contentType, navigationType, displayFeature)
         composable(CWMRoute.STATUS) {
             NotImplementedYet(screenTitle = "Status")
         }

@@ -9,10 +9,9 @@ import androidx.compose.ui.unit.sp
 import com.kakapo.designsystem.R
 
 val MontserratFontFamily = FontFamily(
-    Font(R.font.montserrat_light),
+    Font(R.font.montserrat_regular),
     Font(R.font.montserrat_medium),
-    Font(R.font.montserrat_semibold),
-    Font(R.font.montserrat_regular)
+    Font(R.font.montserrat_semibold)
 )
 
 val KarlaFontFamily = FontFamily(

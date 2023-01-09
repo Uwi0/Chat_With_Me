@@ -1,4 +1,4 @@
-package com.kakapo.chatwithme.utils
+package com.kakapo.ui.utils
 
 import android.graphics.Rect
 import androidx.window.layout.FoldingFeature
