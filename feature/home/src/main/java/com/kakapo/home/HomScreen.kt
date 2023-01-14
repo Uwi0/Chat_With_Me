@@ -14,11 +14,11 @@ import androidx.window.layout.DisplayFeature
 import com.google.accompanist.adaptive.HorizontalTwoPaneStrategy
 import com.google.accompanist.adaptive.TwoPane
 import com.kakapo.chat_detail.ChatDetailScreen
+import com.kakapo.home.component.HomeSearchBar
 import com.kakapo.ui.cell.CellAvatarItem
 import com.kakapo.ui.utils.CWMContentType
 import com.kakapo.ui.utils.CWMNavigationType
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 internal fun HomeRoute(
     contentType: CWMContentType,
@@ -28,11 +28,10 @@ internal fun HomeRoute(
     navController: NavHostController,
     displayFeature: List<DisplayFeature>
 ) {
-    val uiState by viewModel.viewState.collectAsStateWithLifecycle()
     if (contentType == CWMContentType.DUAL_PANE) {
         TwoPane(
             first = {
-                HomeScreen(uiState = uiState)
+                HomeScreen(viewModel)
             },
             second = {
                 ChatDetailScreen()
@@ -41,14 +40,24 @@ internal fun HomeRoute(
             displayFeatures = displayFeature
         )
     } else {
-        HomeScreen(uiState = uiState)
+        HomeScreen(viewModel)
     }
 }
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-internal fun HomeScreen(uiState: HomeViewContract.ViewState) {
+internal fun HomeScreen(viewModel: HomeViewModel) {
+    val uiState by viewModel.viewState.collectAsStateWithLifecycle()
     LazyColumn(
         content = {
+            item { 
+                HomeSearchBar(
+                    query = uiState.searchQuery,
+                    onQueryChanged = viewModel::querySearchChat,
+                    onSearch = viewModel::searchChat,
+                    onClickImageProfile = {}
+                )
+            }
             items(uiState.listChat){
                 CellAvatarItem(chatItem = it)
             }

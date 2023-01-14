@@ -22,6 +22,11 @@ android {
     }
 
     buildTypes {
+        create("benchmark") {
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
         val debug by getting {
             isMinifyEnabled = false
             applicationIdSuffix = CWMBuildType.DEBUG.applicationIdSuffix
@@ -51,6 +56,7 @@ dependencies {
     implementation(project(":feature:status"))
     implementation(project(":feature:calling"))
     implementation(project(":feature:settings"))
+    implementation(project(":logger"))
 
     implementation(libs.accompanist.systemuicontroller)
 

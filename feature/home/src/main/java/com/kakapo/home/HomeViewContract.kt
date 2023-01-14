@@ -7,8 +7,14 @@ import com.kakapo.ui.R
 class HomeViewContract {
 
     data class ViewState(
-        val listChat: List<ChatItem> = HomeViewContract().dummyListChat()
+        val listChat: List<ChatItem> = HomeViewContract().dummyListChat(),
+        val searchQuery: String = ""
     )
+
+    sealed class ViewEvent {
+        data class QueryChat(val query: String): ViewEvent()
+        object SearchChat: ViewEvent()
+    }
 
     fun dummyListChat() = listOf(
         ChatItem(

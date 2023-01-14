@@ -5,4 +5,14 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class CWMApplication: Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+    }
+
+    private fun initLogger(){
+        if(BuildConfig.DEBUG){
+
+        }
+    }
 }
