@@ -48,6 +48,9 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":feature:home"))
+    implementation(project(":feature:status"))
+    implementation(project(":feature:calling"))
+    implementation(project(":feature:settings"))
 
     implementation(libs.accompanist.systemuicontroller)
 

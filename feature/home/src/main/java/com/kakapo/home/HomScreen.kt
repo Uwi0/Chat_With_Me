@@ -9,10 +9,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import androidx.window.layout.DisplayFeature
 import com.google.accompanist.adaptive.HorizontalTwoPaneStrategy
 import com.google.accompanist.adaptive.TwoPane
-import com.kakapo.ui.NotImplementedYet
+import com.kakapo.chat_detail.ChatDetailScreen
 import com.kakapo.ui.cell.CellAvatarItem
 import com.kakapo.ui.utils.CWMContentType
 import com.kakapo.ui.utils.CWMNavigationType
@@ -24,6 +25,7 @@ internal fun HomeRoute(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel(),
     navigationType: CWMNavigationType,
+    navController: NavHostController,
     displayFeature: List<DisplayFeature>
 ) {
     val uiState by viewModel.viewState.collectAsStateWithLifecycle()
@@ -33,7 +35,7 @@ internal fun HomeRoute(
                 HomeScreen(uiState = uiState)
             },
             second = {
-                NotImplementedYet(screenTitle = "Detail")
+                ChatDetailScreen()
             },
             strategy = HorizontalTwoPaneStrategy(splitFraction = 0.5f, gapWidth = 16.dp),
             displayFeatures = displayFeature

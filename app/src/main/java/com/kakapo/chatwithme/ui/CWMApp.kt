@@ -16,15 +16,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.window.layout.DisplayFeature
 import androidx.window.layout.FoldingFeature
+import com.kakapo.calling.navigation.callingScreen
 import com.kakapo.chatwithme.ui.*
 import com.kakapo.home.navigation.HOME_ROUTE
 import com.kakapo.home.navigation.homeScreen
-import com.kakapo.ui.NotImplementedYet
+import com.kakapo.settings.navigation.settingsScreen
+import com.kakapo.status.navigation.statusScreen
 import com.kakapo.ui.utils.*
 import kotlinx.coroutines.launch
 
@@ -230,15 +231,29 @@ private fun CWMNavHost(
         navController = navController,
         startDestination = HOME_ROUTE
     ) {
-        homeScreen(contentType, navigationType, displayFeature)
-        composable(CWMRoute.STATUS) {
-            NotImplementedYet(screenTitle = "Status")
-        }
-        composable(CWMRoute.CALLING) {
-            NotImplementedYet(screenTitle = "Calling")
-        }
-        composable(CWMRoute.SETTINGS) {
-            NotImplementedYet(screenTitle = "Settings")
-        }
+        homeScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+            navController = navController,
+            displayFeature = displayFeature
+        )
+        statusScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+            navController = navController,
+            displayFeature = displayFeature
+        )
+        callingScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+            navController = navController,
+            displayFeature = displayFeature
+        )
+        settingsScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+            navController = navController,
+            displayFeature = displayFeature
+        )
     }
 }

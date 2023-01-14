@@ -5,10 +5,5 @@ plugins {
 }
 
 android {
-    namespace = "com.kakapo.home"
-}
-
-dependencies {
-
-    implementation(project(":feature:chat-detail"))
+    namespace = "com.kakapo.chat_detail"
 }

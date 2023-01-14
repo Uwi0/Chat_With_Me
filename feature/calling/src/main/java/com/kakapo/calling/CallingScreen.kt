@@ -1,7 +1,5 @@
-package com.kakapo.settings
+package com.kakapo.calling
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -12,18 +10,18 @@ import com.kakapo.ui.utils.CWMContentType
 import com.kakapo.ui.utils.CWMNavigationType
 
 @Composable
-internal fun SettingsRoute(
+internal fun CallingRoute(
     contentType: CWMContentType,
+    modifier: Modifier = Modifier,
     navigationType: CWMNavigationType,
     navController: NavHostController,
     displayFeature: List<DisplayFeature>,
-    modifier: Modifier = Modifier,
-    viewModel: SettingsViewModel = hiltViewModel()
+    viewModel: CallingViewModel = hiltViewModel()
 ){
-    SettingsScreen(modifier = modifier)
+    CallingScreen()
 }
 
 @Composable
-internal fun SettingsScreen(modifier: Modifier){
-    ScreenNotImplementedYet(screenTitle = "Settings")
+internal fun CallingScreen(){
+    ScreenNotImplementedYet(screenTitle = "Calling")
 }

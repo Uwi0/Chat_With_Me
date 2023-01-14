@@ -9,15 +9,12 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import com.kakapo.calling.navigation.CALLING_ROUTE
 import com.kakapo.chatwithme.R
 import com.kakapo.home.navigation.HOME_ROUTE
+import com.kakapo.settings.navigation.SETTINGS_ROUTE
+import com.kakapo.status.navigation.STATUS_ROUTE
 
-object CWMRoute {
-    const val HOME = "HomeRoute"
-    const val STATUS = "StatusRoute"
-    const val CALLING = "CallingRoute"
-    const val SETTINGS = "SettingsRoute"
-}
 
 data class CWMTopLevelDestination(
     val route: String,
@@ -47,19 +44,19 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         iconTextId = R.string.home
     ),
     CWMTopLevelDestination(
-        route = CWMRoute.STATUS,
+        route = STATUS_ROUTE,
         selectedIcon = Icons.Default.Article,
         unselectedIcon = Icons.Default.Article,
         iconTextId = R.string.status
     ),
     CWMTopLevelDestination(
-        route = CWMRoute.CALLING,
+        route = CALLING_ROUTE,
         selectedIcon = Icons.Default.Call,
         unselectedIcon = Icons.Default.Call,
         iconTextId = R.string.call
     ),
     CWMTopLevelDestination(
-        route = CWMRoute.SETTINGS,
+        route = SETTINGS_ROUTE,
         selectedIcon = Icons.Default.Settings,
         unselectedIcon = Icons.Default.Settings,
         iconTextId = R.string.settings
