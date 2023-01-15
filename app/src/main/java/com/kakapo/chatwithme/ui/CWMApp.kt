@@ -20,13 +20,19 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.window.layout.DisplayFeature
 import androidx.window.layout.FoldingFeature
+import com.kakapo.authentication.login.navigation.LOGIN_ROUTE
+import com.kakapo.authentication.login.navigation.loginScreen
+import com.kakapo.calling.navigation.CALLING_ROUTE
 import com.kakapo.calling.navigation.callingScreen
 import com.kakapo.chatwithme.ui.*
 import com.kakapo.home.navigation.HOME_ROUTE
 import com.kakapo.home.navigation.homeScreen
+import com.kakapo.settings.navigation.SETTINGS_ROUTE
 import com.kakapo.settings.navigation.settingsScreen
+import com.kakapo.status.navigation.STATUS_ROUTE
 import com.kakapo.status.navigation.statusScreen
 import com.kakapo.ui.utils.*
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -125,11 +131,13 @@ private fun CWMNavigationWrapper(
 
     if (navigationType == CWMNavigationType.PERMANENT_NAVIGATION_DRAWER) {
         PermanentNavigationDrawer(drawerContent = {
-            PermanentNavigationDrawerContent(
-                selectedDestination = selectedDestination,
-                navigationContentPosition = navigationContentPosition,
-                navigateToTopLevelDestination = navigationActions::navigateTo
-            )
+            if (routeIsNavigation(selectedDestination)){
+                PermanentNavigationDrawerContent(
+                    selectedDestination = selectedDestination,
+                    navigationContentPosition = navigationContentPosition,
+                    navigateToTopLevelDestination = navigationActions::navigateTo
+                )
+            }
         }) {
             CWMAppContent(
                 navigationType = navigationType,
@@ -144,16 +152,18 @@ private fun CWMNavigationWrapper(
     } else {
         ModalNavigationDrawer(
             drawerContent = {
-                ModalNavigationDrawerContent(
-                    selectedDestination = selectedDestination,
-                    navigationContentPosition = navigationContentPosition,
-                    navigateToTopLevelDestination = navigationActions::navigateTo,
-                    onDrawerClicked = {
-                        scope.launch {
-                            drawerState.close()
+                if (routeIsNavigation(selectedDestination)){
+                    ModalNavigationDrawerContent(
+                        selectedDestination = selectedDestination,
+                        navigationContentPosition = navigationContentPosition,
+                        navigateToTopLevelDestination = navigationActions::navigateTo,
+                        onDrawerClicked = {
+                            scope.launch {
+                                drawerState.close()
+                            }
                         }
-                    }
-                )
+                    )
+                }
             },
             drawerState = drawerState
         ) {
@@ -175,6 +185,15 @@ private fun CWMNavigationWrapper(
     }
 }
 
+private fun routeIsNavigation(selectedDestination: String): Boolean {
+    return selectedDestination in listOf(
+        HOME_ROUTE,
+        CALLING_ROUTE,
+        STATUS_ROUTE,
+        SETTINGS_ROUTE
+    )
+}
+
 @Composable
 fun CWMAppContent(
     modifier: Modifier = Modifier,
@@ -188,13 +207,15 @@ fun CWMAppContent(
     onDrawerClicked: () -> Unit = {}
 ) {
     Row(modifier = modifier.fillMaxSize()) {
-        AnimatedVisibility(visible = navigationType == CWMNavigationType.NAVIGATION_RAIL) {
-            CWMNavigationRail(
-                selectedDestination = selectedDestination,
-                navigationContentPosition = navigationContentPosition,
-                navigateToTopLevelDestination = navigateToTopLevelDestination,
-                onDrawerClicked = onDrawerClicked
-            )
+        if (routeIsNavigation(selectedDestination)){
+            AnimatedVisibility(visible = navigationType == CWMNavigationType.NAVIGATION_RAIL) {
+                CWMNavigationRail(
+                    selectedDestination = selectedDestination,
+                    navigationContentPosition = navigationContentPosition,
+                    navigateToTopLevelDestination = navigateToTopLevelDestination,
+                    onDrawerClicked = onDrawerClicked
+                )
+            }
         }
         Column(
             modifier = Modifier
@@ -208,11 +229,13 @@ fun CWMAppContent(
                 navigationType = navigationType,
                 modifier = Modifier.weight(1f)
             )
-            AnimatedVisibility(visible = navigationType == CWMNavigationType.BOTTOM_NAVIGATION) {
-                CWMBottomNavigationBar(
-                    selectedDestination = selectedDestination,
-                    navigateToTopLevelDestination = navigateToTopLevelDestination
-                )
+            if (routeIsNavigation(selectedDestination)){
+                AnimatedVisibility(visible = navigationType == CWMNavigationType.BOTTOM_NAVIGATION) {
+                    CWMBottomNavigationBar(
+                        selectedDestination = selectedDestination,
+                        navigateToTopLevelDestination = navigateToTopLevelDestination
+                    )
+                }
             }
         }
     }
@@ -229,8 +252,14 @@ private fun CWMNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = HOME_ROUTE
+        startDestination = LOGIN_ROUTE
     ) {
+        loginScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+            navController = navController,
+            displayFeature = displayFeature
+        )
         homeScreen(
             contentType = contentType,
             navigationType = navigationType,

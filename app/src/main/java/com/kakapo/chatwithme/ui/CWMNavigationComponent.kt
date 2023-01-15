@@ -142,7 +142,7 @@ fun PermanentNavigationDrawerContent(
                 ) {
                     Text(
                         modifier = Modifier.padding(16.dp),
-                        text = stringResource(id = R.string.app_name).uppercase(),
+                        text = stringResource(id = com.kakapo.designsystem.R.string.app_name).uppercase(),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -233,7 +233,7 @@ fun ModalNavigationDrawerContent(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = stringResource(id = R.string.app_name).uppercase(),
+                            text = stringResource(id = com.kakapo.designsystem.R.string.app_name).uppercase(),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.primary
                         )

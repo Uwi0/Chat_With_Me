@@ -56,6 +56,8 @@ dependencies {
     implementation(project(":feature:status"))
     implementation(project(":feature:calling"))
     implementation(project(":feature:settings"))
+    implementation(project(":feature:chat-detail"))
+    implementation(project(":feature:authentication"))
     implementation(project(":logger"))
 
     implementation(libs.accompanist.systemuicontroller)

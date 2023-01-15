@@ -49,8 +49,7 @@ internal fun HomeSearchBar(
             },
             trailingIcon = {
                 Image(
-                    modifier = Modifier.clickable { onClickImageProfile() }
-                        .padding(start = 8.dp, top = 8.dp, bottom = 8.dp, end = 16.dp).clip(CircleShape),
+                    modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 8.dp, end = 16.dp).clip(CircleShape).clickable { onClickImageProfile() },
                     painter = painterResource(id = com.kakapo.ui.R.drawable.img_avatar_sample1),
                     contentDescription = ""
                 )
@@ -70,7 +69,7 @@ internal fun HomeSearchBar(
                 unfocusedIndicatorColor = Color.Transparent,
                 textColor = MaterialTheme.colorScheme.outline
             ),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }
