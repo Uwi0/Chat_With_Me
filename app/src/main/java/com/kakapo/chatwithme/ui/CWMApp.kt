@@ -22,6 +22,7 @@ import androidx.window.layout.DisplayFeature
 import androidx.window.layout.FoldingFeature
 import com.kakapo.authentication.login.navigation.LOGIN_ROUTE
 import com.kakapo.authentication.login.navigation.loginScreen
+import com.kakapo.authentication.register.navigation.registerScreen
 import com.kakapo.calling.navigation.CALLING_ROUTE
 import com.kakapo.calling.navigation.callingScreen
 import com.kakapo.chatwithme.ui.*
@@ -32,7 +33,6 @@ import com.kakapo.settings.navigation.settingsScreen
 import com.kakapo.status.navigation.STATUS_ROUTE
 import com.kakapo.status.navigation.statusScreen
 import com.kakapo.ui.utils.*
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -131,7 +131,7 @@ private fun CWMNavigationWrapper(
 
     if (navigationType == CWMNavigationType.PERMANENT_NAVIGATION_DRAWER) {
         PermanentNavigationDrawer(drawerContent = {
-            if (routeIsNavigation(selectedDestination)){
+            if (routeIsNavigation(selectedDestination)) {
                 PermanentNavigationDrawerContent(
                     selectedDestination = selectedDestination,
                     navigationContentPosition = navigationContentPosition,
@@ -152,7 +152,7 @@ private fun CWMNavigationWrapper(
     } else {
         ModalNavigationDrawer(
             drawerContent = {
-                if (routeIsNavigation(selectedDestination)){
+                if (routeIsNavigation(selectedDestination)) {
                     ModalNavigationDrawerContent(
                         selectedDestination = selectedDestination,
                         navigationContentPosition = navigationContentPosition,
@@ -207,7 +207,7 @@ fun CWMAppContent(
     onDrawerClicked: () -> Unit = {}
 ) {
     Row(modifier = modifier.fillMaxSize()) {
-        if (routeIsNavigation(selectedDestination)){
+        if (routeIsNavigation(selectedDestination)) {
             AnimatedVisibility(visible = navigationType == CWMNavigationType.NAVIGATION_RAIL) {
                 CWMNavigationRail(
                     selectedDestination = selectedDestination,
@@ -229,7 +229,7 @@ fun CWMAppContent(
                 navigationType = navigationType,
                 modifier = Modifier.weight(1f)
             )
-            if (routeIsNavigation(selectedDestination)){
+            if (routeIsNavigation(selectedDestination)) {
                 AnimatedVisibility(visible = navigationType == CWMNavigationType.BOTTOM_NAVIGATION) {
                     CWMBottomNavigationBar(
                         selectedDestination = selectedDestination,
@@ -255,6 +255,12 @@ private fun CWMNavHost(
         startDestination = LOGIN_ROUTE
     ) {
         loginScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+            navController = navController,
+            displayFeature = displayFeature
+        )
+        registerScreen(
             contentType = contentType,
             navigationType = navigationType,
             navController = navController,

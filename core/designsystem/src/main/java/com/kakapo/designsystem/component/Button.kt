@@ -68,12 +68,12 @@ fun CWMOutlinedButton(
             contentColor = MaterialTheme.colorScheme.onBackground
         ),
         border = BorderStroke(
-            width = NiaButtonDefaults.OutlinedButtonBorderWidth,
+            width = CWMButtonDefaults.OutlinedButtonBorderWidth,
             color = if (enabled) {
                 MaterialTheme.colorScheme.outline
             } else {
                 MaterialTheme.colorScheme.onSurface.copy(
-                    alpha = NiaButtonDefaults.DisabledOutlinedButtonBorderAlpha
+                    alpha = CWMButtonDefaults.DisabledOutlinedButtonBorderAlpha
                 )
             }
         ),
@@ -170,7 +170,7 @@ private fun CWMButtonContent(
     }
 }
 
-object NiaButtonDefaults {
+object CWMButtonDefaults {
     const val DisabledOutlinedButtonBorderAlpha = 0.12f
     val OutlinedButtonBorderWidth = 1.dp
 }

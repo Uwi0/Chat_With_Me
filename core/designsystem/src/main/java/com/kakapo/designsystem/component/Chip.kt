@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun NiaFilterChip(
+fun CWMFilterChip(
     selected: Boolean,
     onSelectedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
@@ -43,28 +43,28 @@ fun NiaFilterChip(
             borderColor = MaterialTheme.colorScheme.onBackground,
             selectedBorderColor = MaterialTheme.colorScheme.onBackground,
             disabledBorderColor = MaterialTheme.colorScheme.onBackground.copy(
-                alpha = NiaChipDefaults.DisabledChipContentAlpha
+                alpha = CWMChipDefaults.DisabledChipContentAlpha
             ),
             disabledSelectedBorderColor = MaterialTheme.colorScheme.onBackground.copy(
-                alpha = NiaChipDefaults.DisabledChipContentAlpha
+                alpha = CWMChipDefaults.DisabledChipContentAlpha
             ),
-            selectedBorderWidth = NiaChipDefaults.ChipBorderWidth
+            selectedBorderWidth = CWMChipDefaults.ChipBorderWidth
         ),
         colors = FilterChipDefaults.filterChipColors(
             labelColor = MaterialTheme.colorScheme.onBackground,
             iconColor = MaterialTheme.colorScheme.onBackground,
             disabledContainerColor = if (selected) {
                 MaterialTheme.colorScheme.onBackground.copy(
-                    alpha = NiaChipDefaults.DisabledChipContainerAlpha
+                    alpha = CWMChipDefaults.DisabledChipContainerAlpha
                 )
             } else {
                 Color.Transparent
             },
             disabledLabelColor = MaterialTheme.colorScheme.onBackground.copy(
-                alpha = NiaChipDefaults.DisabledChipContentAlpha
+                alpha = CWMChipDefaults.DisabledChipContentAlpha
             ),
             disabledLeadingIconColor = MaterialTheme.colorScheme.onBackground.copy(
-                alpha = NiaChipDefaults.DisabledChipContentAlpha
+                alpha = CWMChipDefaults.DisabledChipContentAlpha
             ),
             selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
             selectedLabelColor = MaterialTheme.colorScheme.onBackground,
@@ -76,7 +76,7 @@ fun NiaFilterChip(
 /**
  * Now in Android chip default values.
  */
-object NiaChipDefaults {
+object CWMChipDefaults {
     const val DisabledChipContainerAlpha = 0.12f
     const val DisabledChipContentAlpha = 0.38f
     val ChipBorderWidth = 1.dp
