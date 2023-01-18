@@ -53,12 +53,13 @@ fun ButtonMedium(
 
 @Composable
 fun ButtonLarge(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     @StringRes textButton: Int,
     leadingIcon: @Composable () -> Unit = {}
 ){
     CWMButton(
-        modifier = Modifier
+        modifier = modifier
             .widthIn(311.dp)
             .heightIn(47.dp),
         onClick = onClick,

@@ -13,8 +13,13 @@ import com.kakapo.ui.utils.CWMNavigationType
 
 const val LOGIN_ROUTE = "login_route"
 
-fun NavController.navigateToLogin(navOptions: NavOptions? = null){
-    this.navigate(LOGIN_ROUTE, navOptions)
+fun NavController.navigateToLogin(startDestination: String){
+    this.navigate(LOGIN_ROUTE){
+        popUpTo(startDestination){
+            inclusive = true
+            saveState = false
+        }
+    }
 }
 
 fun NavGraphBuilder.loginScreen(

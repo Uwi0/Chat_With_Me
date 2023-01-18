@@ -85,7 +85,11 @@ internal fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(id = com.kakapo.designsystem.R.string.app_name),
+            text = buildAnnotatedString {
+                append(stringResource(id = R.string.loggin))
+                append(" ")
+                append(stringResource(id = com.kakapo.designsystem.R.string.app_name))
+            },
             style = MaterialTheme.typography.titleLarge
         )
         Spacer(modifier = Modifier.height(36.dp))

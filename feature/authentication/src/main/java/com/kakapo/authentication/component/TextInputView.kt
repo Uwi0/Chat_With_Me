@@ -27,7 +27,8 @@ fun TextInputDefault(
     query: String,
     onQueryChanged: (String) -> Unit,
     @StringRes hint: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    keyboardType: KeyboardType = KeyboardType.Text
 ) {
     TextField(
         value = query,
@@ -43,7 +44,7 @@ fun TextInputDefault(
             )
         },
         keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Text,
+            keyboardType = keyboardType,
         ),
         shape = CircleShape,
         colors = TextFieldDefaults.textFieldColors(
@@ -64,7 +65,8 @@ fun TextInputDefault(
 fun TextInputPassword(
     query: String,
     onQueryChanged: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    hint: Int = R.string.password
 ) {
     var isVisible by remember { mutableStateOf(false) }
     TextField(
@@ -86,7 +88,7 @@ fun TextInputPassword(
         },
         placeholder = {
             Text(
-                text = stringResource(id = R.string.password)
+                text = stringResource(id = hint)
             )
         },
         visualTransformation = if (isVisible) VisualTransformation.None else PasswordVisualTransformation(),
