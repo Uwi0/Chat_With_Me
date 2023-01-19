@@ -53,13 +53,15 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         checkConfirmedPassword()
         checkPasswordLength()
         checkPasswordAndConfirmedPasswordAreSame()
+        _uiState.update { oldValue ->
+            oldValue.copy(canRegister = oldValue.userCanRegister())
+        }
     }
 
     private fun checkName(){
         _uiState.update { oldValue ->
             oldValue.copy(
                 nameCorrect = oldValue.nameIsNotEmpty(),
-                canRegister = oldValue.nameIsNotEmpty(),
                 nameErrorMessage = R.string.name_cant_be_empty
             )
         }
@@ -69,7 +71,6 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         _uiState.update { oldValue ->
             oldValue.copy(
                 usernameCorrect = oldValue.usernameIsNotEmpty(),
-                canRegister = oldValue.usernameIsNotEmpty(),
                 usernameErrorMessage = R.string.username_cant_be_empty
             )
         }
@@ -79,7 +80,6 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         _uiState.update { oldValue ->
             oldValue.copy(
                 emailCorrect = oldValue.emailIsNotEmpty(),
-                canRegister = oldValue.emailIsNotEmpty(),
                 usernameErrorMessage = R.string.email_cant_be_empty
             )
         }
@@ -89,7 +89,6 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         _uiState.update { oldValue ->
             oldValue.copy(
                 passwordCorrect = oldValue.passwordIsNotEmpty(),
-                canRegister = oldValue.passwordIsNotEmpty(),
                 passwordErrorMessage = R.string.password_cant_be_empty
             )
         }
@@ -99,7 +98,6 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         _uiState.update { oldValue ->
             oldValue.copy(
                 confirmedPasswordCorrect = oldValue.confirmedPasswordIsNotEmpty(),
-                canRegister = oldValue.confirmedPasswordIsNotEmpty(),
                 confirmedPasswordErrorMessage = R.string.confirmed_password_cant_be_empty
             )
         }
@@ -109,7 +107,6 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         _uiState.update { oldValue ->
             oldValue.copy(
                 passwordCorrect = oldValue.passwordLengthMoreThan8(),
-                canRegister = oldValue.passwordLengthMoreThan8(),
                 passwordErrorMessage = R.string.your_password_less_than_8
             )
         }
@@ -119,7 +116,6 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
         _uiState.update { oldValue ->
             oldValue.copy(
                 confirmedPasswordCorrect = oldValue.passwordAndConfirmedPasswordSame(),
-                canRegister = oldValue.passwordAndConfirmedPasswordSame(),
                 confirmedPasswordErrorMessage = R.string.password_and_confirmed_password_not_same
             )
         }

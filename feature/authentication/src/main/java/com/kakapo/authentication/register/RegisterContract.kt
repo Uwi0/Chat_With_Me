@@ -36,4 +36,10 @@ data class RegisterUIState(
     fun passwordAndConfirmedPasswordSame() = password == confirmedPassword
 
     fun passwordLengthMoreThan8() = password.length > 8
+
+    fun userCanRegister() = nameCorrect &&
+            usernameCorrect &&
+            emailCorrect &&
+            passwordCorrect &&
+            confirmedPasswordCorrect
 }
