@@ -1,10 +1,7 @@
 package com.kakapo.ui.custom_text_field
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -15,6 +12,9 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.focusTarget
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
@@ -28,9 +28,14 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.kakapo.ui.AppPreview
+import androidx.compose.ui.unit.sp
+import com.kakapo.ui.FunctionalityNotAvailablePopup
 import com.kakapo.designsystem.R
+import com.kakapo.model.emojis
+import com.kakapo.ui.AppPreview
+import com.kakapo.ui.FunctionalityNotAvailablePanel
 
 enum class InputSelector {
     NONE,
@@ -301,38 +306,134 @@ private fun SelectorExpanded(
 ) {
     if (currentSelector == InputSelector.NONE) return
 
-//    val focusRequester = FocusRequester()
-//
-//    SideEffect {
-//        if (currentSelector == InputSelector.EMOJI) {
-//            focusRequester.requestFocus()
-//        }
-//    }
+    val focusRequester = FocusRequester()
+
+    SideEffect {
+        if (currentSelector == InputSelector.EMOJI) {
+            focusRequester.requestFocus()
+        }
+    }
 
     Surface(tonalElevation = 8.dp) {
         when (currentSelector) {
-            InputSelector.EMOJI -> {
-
-            }
-            InputSelector.MAP -> {
-
-            }
-            InputSelector.DM -> {
-
-            }
-            InputSelector.PHONE -> {
-
-            }
-            InputSelector.PICTURE -> {
-
-            }
-            InputSelector.VOICE -> {
-
-            }
+            InputSelector.EMOJI -> EmojiSelector(onTextAdded = onTextAdded, focusRequester = focusRequester)
+            InputSelector.MAP -> FunctionalityNotAvailablePanel()
+            InputSelector.DM -> NotAvailablePopUp(onCloseRequested)
+            InputSelector.PHONE -> FunctionalityNotAvailablePanel()
+            InputSelector.PICTURE -> FunctionalityNotAvailablePanel()
+            InputSelector.VOICE -> FunctionalityNotAvailablePanel()
             else -> throw NotImplementedError()
         }
     }
 
+}
+
+@Composable
+private fun EmojiSelector(
+    onTextAdded: (String) -> Unit,
+    focusRequester: FocusRequester
+) {
+    var selected by remember { mutableStateOf(EmojiStickerSelector.EMOJI) }
+
+    val label = stringResource(id = R.string.emoji_selector_des)
+    Column(
+        modifier = Modifier
+            .focusRequester(focusRequester)
+            .focusTarget()
+            .semantics { contentDescription = label }
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
+        ) {
+            ExtenderSelectorInnerButton(
+                text = stringResource(id = R.string.emoji_label),
+                onClick = { selected = EmojiStickerSelector.EMOJI },
+                selected = selected == EmojiStickerSelector.EMOJI,
+                modifier = Modifier.weight(1f)
+            )
+            ExtenderSelectorInnerButton(
+                text = stringResource(id = R.string.sticker_label),
+                onClick = { selected = EmojiStickerSelector.STICKER },
+                selected = selected == EmojiStickerSelector.STICKER,
+                modifier = Modifier.weight(1f)
+            )
+            ExtenderSelectorInnerButton(
+                text = stringResource(id = R.string.gif_label),
+                onClick = { selected = EmojiStickerSelector.GIF },
+                selected = selected == EmojiStickerSelector.GIF,
+                modifier = Modifier.weight(1f)
+            )
+        }
+        Row(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            EmojiTable(onTextAdded = onTextAdded, modifier = Modifier.padding(8.dp))
+        }
+        if (selected != EmojiStickerSelector.EMOJI) {
+            NotAvailablePopUp(onDismissed = { selected = EmojiStickerSelector.EMOJI })
+        }
+    }
+}
+
+@Composable
+private fun ExtenderSelectorInnerButton(
+    text: String,
+    onClick: () -> Unit,
+    selected: Boolean,
+    modifier: Modifier = Modifier
+) {
+    val colors = ButtonDefaults.buttonColors(
+        containerColor = if (selected) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
+        else Color.Transparent,
+        disabledContentColor = Color.Transparent,
+        contentColor = MaterialTheme.colorScheme.onSurface,
+        disabledContainerColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.74f)
+    )
+    TextButton(
+        onClick = onClick,
+        modifier = modifier
+            .padding(8.dp)
+            .height(36.dp),
+        colors = colors,
+        contentPadding = PaddingValues(0.dp)
+    ) {
+        Text(text = text, style = MaterialTheme.typography.titleSmall)
+    }
+}
+
+@Composable
+private fun EmojiTable(
+    onTextAdded: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier.fillMaxWidth()) {
+        repeat(4) { x ->
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                repeat(EMOJI_COLUMNS) { y ->
+                    val emoji = emojis[x * EMOJI_COLUMNS + y]
+                    Text(
+                        modifier = Modifier
+                            .clickable { onTextAdded(emoji) }
+                            .sizeIn(minWidth = 42.dp, minHeight = 42.dp)
+                            .padding(8.dp),
+                        text = emoji,
+                        style = LocalTextStyle.current.copy(
+                            fontSize = 18.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun NotAvailablePopUp(onDismissed: () -> Unit) {
+    FunctionalityNotAvailablePopup(onDismiss = onDismissed)
 }
 
 private fun TextFieldValue.addText(newString: String): TextFieldValue {
@@ -351,6 +452,6 @@ private fun TextFieldValue.addText(newString: String): TextFieldValue {
 
 @AppPreview
 @Composable
-private fun PreviewUserInput(){
+private fun PreviewUserInput() {
     UserInput(onMessageSent = {})
 }

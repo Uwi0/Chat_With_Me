@@ -11,4 +11,7 @@
     <string name="video_chat_desc">Start Video Chat</string>
     <string name="voice_chat_desc">Start Voice Chatt</string>
     <string name="send">Send</string>
+    <string name="emoji_label">Emojis</string>
+    <string name="sticker_label">Stickers</string>
+    <string name="gif_label">Gif</string>
 </resources>

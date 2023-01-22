@@ -24,4 +24,6 @@
     <string name="search">Search</string>
     <string name="empty_screen_title">%s Screen Under Construction</string>
     <string name="empty_screen_subtitle">This screen is still under construction</string>
+    <string name="not_available">Functionality currently not available</string>
+    <string name="not_available_subtitle">Grab a beverage and check back later!</string>
 </resources>
