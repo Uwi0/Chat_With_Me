@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -54,7 +55,7 @@ fun TextInputDefault(
             textColor = MaterialTheme.colorScheme.outline
         ),
         modifier = Modifier
-            .fillMaxWidth()
+            .width(343.dp)
             .then(modifier)
             .border(width = 1.dp, color = MaterialTheme.colorScheme.outline, shape = CircleShape)
     )
@@ -103,7 +104,7 @@ fun TextInputPassword(
             textColor = MaterialTheme.colorScheme.outline
         ),
         modifier = Modifier
-            .fillMaxWidth()
+            .width(343.dp)
             .then(modifier)
             .border(width = 1.dp, color = MaterialTheme.colorScheme.outline, shape = CircleShape)
     )

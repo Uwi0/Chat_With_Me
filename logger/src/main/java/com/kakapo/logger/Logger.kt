@@ -11,7 +11,9 @@ object Logger {
         Timber.plant(logger)
     }
 
-    fun d(message: String, t: Throwable? = null) = logger.d(t, message)
+    fun d(message: String, t: Throwable? = null) {
+        logger.d(t, message)
+    }
 
     fun i(message: String, t: Throwable? = null) = logger.i(t, message)
 

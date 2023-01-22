@@ -129,7 +129,7 @@ fun PermanentNavigationDrawerContent(
     navigationContentPosition: CWMNavigationContentPosition,
     navigateToTopLevelDestination: (CWMTopLevelDestination) -> Unit
 ) {
-    PermanentDrawerSheet(modifier = Modifier.sizeIn(minWidth = 200.dp, maxWidth = 300.dp)) {
+    PermanentDrawerSheet(modifier = Modifier.sizeIn(minWidth = 200.dp, maxWidth = 250.dp)) {
         Layout(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.inverseOnSurface)

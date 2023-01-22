@@ -60,7 +60,7 @@ fun ButtonLarge(
 ){
     CWMButton(
         modifier = modifier
-            .widthIn(311.dp)
+            .widthIn(min = 311.dp, max = 343.dp)
             .heightIn(47.dp),
         onClick = onClick,
         text = {

@@ -56,14 +56,14 @@ internal fun LoginRoute(
         }
     }
     if (contentType == CWMContentType.DUAL_PANE) {
+        val splitFraction =
+            if (navigationType == CWMNavigationType.PERMANENT_NAVIGATION_DRAWER) 0.4f else 0.5f
         TwoPane(
             first = {
-                Row(Modifier.padding(horizontal = 150.dp)) {
-                    LoginScreen(viewModel, uiState, navController)
-                }
+                LoginScreen(viewModel, uiState, navController)
             },
             second = { ScreenNotImplementedYet(screenTitle = "Login side panel") },
-            strategy = HorizontalTwoPaneStrategy(splitFraction = 0.5f, gapWidth = 16.dp),
+            strategy = HorizontalTwoPaneStrategy(splitFraction = splitFraction),
             displayFeatures = displayFeature
         )
     } else {
@@ -116,12 +116,12 @@ internal fun LoginScreen(
         Text(
             modifier = Modifier.clickable { navController.navigateToRegisterScreen() },
             text = buildAnnotatedString {
-            append(stringResource(id = R.string.dont_have_account))
-            withStyle(SpanStyle(fontWeight = FontWeight.Bold)){
-                append(" ")
-                append(stringResource(id = R.string.register))
-            }
-        })
+                append(stringResource(id = R.string.dont_have_account))
+                withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                    append(" ")
+                    append(stringResource(id = R.string.register))
+                }
+            })
     }
 }
 
@@ -133,7 +133,8 @@ private fun LoginForm(
     TextInputDefault(
         query = uiState.username,
         onQueryChanged = viewModel::getUsername,
-        hint = R.string.username
+        hint = R.string.username,
+
     )
     Spacer(modifier = Modifier.height(24.dp))
     TextInputPassword(

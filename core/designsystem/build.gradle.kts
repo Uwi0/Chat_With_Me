@@ -21,6 +21,6 @@ dependencies {
     api(libs.androidx.compose.ui.tooling.preview)
     api(libs.androidx.compose.ui.util)
     api(libs.androidx.compose.runtime)
-    implementation(libs.androidx.compose.ui.googlefonts)
+    implementation(libs.androidx.activity.compose)
     androidTestImplementation(project(":core:testing"))
 }

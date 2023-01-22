@@ -127,7 +127,7 @@ private fun CWMNavigationWrapper(
         CWMNavigationActions(navController)
     }
     val navBackEntry by navController.currentBackStackEntryAsState()
-    val selectedDestination = navBackEntry?.destination?.route ?: HOME_ROUTE
+    val selectedDestination = navBackEntry?.destination?.route ?: LOGIN_ROUTE
 
     if (navigationType == CWMNavigationType.PERMANENT_NAVIGATION_DRAWER) {
         PermanentNavigationDrawer(drawerContent = {

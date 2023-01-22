@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="functionaility_not_available">\"Functionality not available 🙈\"</string>
+    <string name="close">CLOSE</string>
+    <string name="textfield_desc">Text Input</string>
+    <string name="hint">Message</string>
+    <string name="emoji_selector_des">Show emoji selector</string>
+    <string name="dm_desc">Direct Message</string>
+    <string name="phot_desc">Attach Photo</string>
+    <string name="map_selector_desc">Location Selector</string>
+    <string name="video_chat_desc">Start Video Chat</string>
+    <string name="voice_chat_desc">Start Voice Chatt</string>
+    <string name="send">Send</string>
+</resources>

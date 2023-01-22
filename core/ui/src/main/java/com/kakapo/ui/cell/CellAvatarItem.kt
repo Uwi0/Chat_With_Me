@@ -33,7 +33,7 @@ fun CellAvatarItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)
+            .height(96.dp)
             .padding(top = (12.5).dp, bottom = (10.5).dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
