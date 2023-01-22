@@ -1,6 +1,5 @@
 package com.kakapo.home
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.kakapo.logger.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(): ViewModel() {
 
-    val viewState: StateFlow<HomeViewContract.ViewState> get() = _viewState
+    val uiState: StateFlow<HomeViewContract.ViewState> get() = _viewState
     private val _viewState = MutableStateFlow(HomeViewContract.ViewState())
 
     fun querySearchChat(query: String){
@@ -22,6 +21,12 @@ class HomeViewModel @Inject constructor(): ViewModel() {
     }
 
     fun searchChat(){
-        Logger.d("query: ${viewState.value.searchQuery}")
+        Logger.d("query: ${uiState.value.searchQuery}")
+    }
+
+    fun navigateToChatDetail(id: Int){
+        _viewState.update { oldValue ->
+            oldValue.copy(selectedChatId = id)
+        }
     }
 }

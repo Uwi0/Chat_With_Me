@@ -8,7 +8,8 @@ class HomeViewContract {
 
     data class ViewState(
         val listChat: List<ChatItem> = HomeViewContract().dummyListChat(),
-        val searchQuery: String = ""
+        val searchQuery: String = "",
+        val selectedChatId: Int = -1
     )
 
     sealed class ViewEvent {
@@ -40,7 +41,7 @@ class HomeViewContract {
             chatStatus = ChatStatus.POSTPONED
         ),
         ChatItem(
-            id = 1,
+            id = 3,
             userAvatar = R.drawable.img_avatar_sample3,
             username = "arul",
             author = "arul",
@@ -51,7 +52,7 @@ class HomeViewContract {
             chatStatus = null
         ),
         ChatItem(
-            id = 1,
+            id = 4,
             userAvatar = R.drawable.img_avatar_sample4,
             username = "jajak",
             author = "you",

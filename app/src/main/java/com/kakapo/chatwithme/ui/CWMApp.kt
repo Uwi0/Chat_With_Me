@@ -25,6 +25,7 @@ import com.kakapo.authentication.login.navigation.loginScreen
 import com.kakapo.authentication.register.navigation.registerScreen
 import com.kakapo.calling.navigation.CALLING_ROUTE
 import com.kakapo.calling.navigation.callingScreen
+import com.kakapo.chat_detail.navigation.chatDetailScreen
 import com.kakapo.chatwithme.ui.*
 import com.kakapo.home.navigation.HOME_ROUTE
 import com.kakapo.home.navigation.homeScreen
@@ -34,6 +35,8 @@ import com.kakapo.status.navigation.STATUS_ROUTE
 import com.kakapo.status.navigation.statusScreen
 import com.kakapo.ui.utils.*
 import kotlinx.coroutines.launch
+
+private const val START_DESTINATION = HOME_ROUTE
 
 @Composable
 fun CWMApp(
@@ -127,7 +130,7 @@ private fun CWMNavigationWrapper(
         CWMNavigationActions(navController)
     }
     val navBackEntry by navController.currentBackStackEntryAsState()
-    val selectedDestination = navBackEntry?.destination?.route ?: LOGIN_ROUTE
+    val selectedDestination = navBackEntry?.destination?.route ?: START_DESTINATION
 
     if (navigationType == CWMNavigationType.PERMANENT_NAVIGATION_DRAWER) {
         PermanentNavigationDrawer(drawerContent = {
@@ -252,7 +255,7 @@ private fun CWMNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = LOGIN_ROUTE
+        startDestination = START_DESTINATION
     ) {
         loginScreen(
             contentType = contentType,
@@ -289,6 +292,12 @@ private fun CWMNavHost(
             navigationType = navigationType,
             navController = navController,
             displayFeature = displayFeature
+        )
+        chatDetailScreen(
+            contentType = contentType,
+            navigationType = navigationType,
+            navController = navController,
+            displayFeature = listOf()
         )
     }
 }

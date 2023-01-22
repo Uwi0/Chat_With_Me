@@ -2,6 +2,7 @@ package com.kakapo.ui.cell
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -28,13 +29,15 @@ import com.kakapo.ui.R
 
 @Composable
 fun CellAvatarItem(
-    chatItem: ChatItem
+    chatItem: ChatItem,
+    onItemClicked: (Int) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(96.dp)
-            .padding(top = (12.5).dp, bottom = (10.5).dp),
+            .padding(top = (12.5).dp, bottom = (10.5).dp)
+            .clickable { onItemClicked(chatItem.id) },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
@@ -135,6 +138,8 @@ private fun PreviewCellAvatarItem() {
             isMuted = true,
             chatStatus = ChatStatus.NOT_SEND
         )
-        CellAvatarItem(chatItem)
+        CellAvatarItem(chatItem){
+
+        }
     }
 }

@@ -24,13 +24,14 @@ import androidx.navigation.NavHostController
 import androidx.window.layout.DisplayFeature
 import com.google.accompanist.adaptive.HorizontalTwoPaneStrategy
 import com.google.accompanist.adaptive.TwoPane
-import com.kakapo.chat_detail.ChatDetailScreen
+import com.kakapo.chat_detail.ChatDetailScreenSidePanel
 import com.kakapo.designsystem.component.AnimateFabContent
 import com.kakapo.home.component.HomeSearchBar
 import com.kakapo.ui.cell.CellAvatarItem
 import com.kakapo.ui.utils.CWMContentType
 import com.kakapo.ui.utils.CWMNavigationType
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 internal fun HomeRoute(
     contentType: CWMContentType,
@@ -40,26 +41,24 @@ internal fun HomeRoute(
     navController: NavHostController,
     displayFeature: List<DisplayFeature>
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     if (contentType == CWMContentType.DUAL_PANE) {
         TwoPane(
             first = {
-                HomeScreen(viewModel)
+                HomeScreen(uiState = uiState, viewModel = viewModel)
             },
             second = {
-                ChatDetailScreen()
+                ChatDetailScreenSidePanel(chatId = uiState.selectedChatId)
             },
             strategy = HorizontalTwoPaneStrategy(splitFraction = 0.5f, gapWidth = 8.dp),
             displayFeatures = displayFeature
         )
     } else {
-        HomeScreen(viewModel)
+        HomeScreen(uiState = uiState, viewModel = viewModel)
     }
 }
-
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-internal fun HomeScreen(viewModel: HomeViewModel) {
-    val uiState by viewModel.viewState.collectAsStateWithLifecycle()
+internal fun HomeScreen(uiState: HomeViewContract.ViewState, viewModel: HomeViewModel) {
 
     val scrollState = rememberScrollState()
     BoxWithConstraints(
@@ -78,7 +77,7 @@ internal fun HomeScreen(viewModel: HomeViewModel) {
                     onClickImageProfile = {}
                 )
                 uiState.listChat.forEach {
-                    CellAvatarItem(chatItem = it)
+                    CellAvatarItem(chatItem = it, onItemClicked = viewModel::navigateToChatDetail)
                 }
             }
         )
@@ -87,7 +86,7 @@ internal fun HomeScreen(viewModel: HomeViewModel) {
         StartConversationFab(
             extended = fabExtended,
             modifier = Modifier.align(Alignment.BottomEnd)
-        ){
+        ) {
 
         }
     }
