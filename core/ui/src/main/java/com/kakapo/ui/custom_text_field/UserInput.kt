@@ -31,11 +31,11 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kakapo.ui.FunctionalityNotAvailablePopup
 import com.kakapo.designsystem.R
 import com.kakapo.model.emojis
 import com.kakapo.ui.AppPreview
 import com.kakapo.ui.FunctionalityNotAvailablePanel
+import com.kakapo.ui.FunctionalityNotAvailablePopup
 
 enum class InputSelector {
     NONE,
@@ -183,7 +183,7 @@ private fun UserInputSelector(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(72.dp)
             .wrapContentHeight()
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),

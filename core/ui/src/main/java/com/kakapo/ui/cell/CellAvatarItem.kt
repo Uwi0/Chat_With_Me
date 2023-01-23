@@ -53,9 +53,14 @@ fun CellAvatarItem(
                 Text(
                     text = chatItem.username,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.W900
+                    fontWeight = FontWeight.W900,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
-                Text(text = chatItem.author, style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    text = chatItem.author,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
                 Text(
                     text = chatItem.lastMessage,
                     style = MaterialTheme.typography.bodyMedium,
@@ -138,7 +143,7 @@ private fun PreviewCellAvatarItem() {
             isMuted = true,
             chatStatus = ChatStatus.NOT_SEND
         )
-        CellAvatarItem(chatItem){
+        CellAvatarItem(chatItem) {
 
         }
     }

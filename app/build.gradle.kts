@@ -52,6 +52,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:designsystem"))
     implementation(project(":feature:home"))
     implementation(project(":feature:status"))
     implementation(project(":feature:calling"))

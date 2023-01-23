@@ -90,7 +90,13 @@ internal fun ChatDetailScreen(
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(topAppBarState)
     val scope = rememberCoroutineScope()
 
-    Surface {
+    Surface(
+        modifier = Modifier.windowInsetsPadding(
+            WindowInsets
+                .navigationBars
+                .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+        )
+    ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier

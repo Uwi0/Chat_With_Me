@@ -18,7 +18,7 @@ data class ChatDetailUiState(
             content = message,
             timeStamp = "now",
             image = null,
-            authorImage = 0,
+            authorImage = com.kakapo.ui.R.drawable.img_avatar_sample1,
             isMe = true
         )
         _message.add(0, msg)

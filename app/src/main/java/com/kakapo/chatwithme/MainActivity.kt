@@ -8,6 +8,7 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.google.accompanist.adaptive.calculateDisplayFeatures
 import com.kakapo.chatwithme.ui.CWMApp
+import com.kakapo.designsystem.theme.CWMTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +21,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             val windowSize = calculateWindowSizeClass(activity = this)
             val displayFeatures = calculateDisplayFeatures(activity = this)
-            CWMApp(windowSize = windowSize, displayFeature = displayFeatures)
+            CWMTheme {
+                CWMApp(windowSize = windowSize, displayFeature = displayFeatures)
+            }
         }
     }
 }

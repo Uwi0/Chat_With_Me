@@ -43,11 +43,13 @@ fun CellStatusItem (
                 Text(
                     text = statusItem.username,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.W900
+                    fontWeight = FontWeight.W900,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
                     text = statusItem.author,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }
