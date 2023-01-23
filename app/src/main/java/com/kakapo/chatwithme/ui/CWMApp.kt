@@ -20,11 +20,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.window.layout.DisplayFeature
 import androidx.window.layout.FoldingFeature
-import com.kakapo.authentication.login.navigation.LOGIN_ROUTE
 import com.kakapo.authentication.login.navigation.loginScreen
 import com.kakapo.authentication.register.navigation.registerScreen
 import com.kakapo.calling.navigation.CALLING_ROUTE
 import com.kakapo.calling.navigation.callingScreen
+import com.kakapo.chat_detail.navigation.CHAT_DETAIL_ROUTE
 import com.kakapo.chat_detail.navigation.chatDetailScreen
 import com.kakapo.chatwithme.ui.*
 import com.kakapo.home.navigation.HOME_ROUTE
@@ -36,7 +36,7 @@ import com.kakapo.status.navigation.statusScreen
 import com.kakapo.ui.utils.*
 import kotlinx.coroutines.launch
 
-private const val START_DESTINATION = HOME_ROUTE
+private const val START_DESTINATION = CHAT_DETAIL_ROUTE
 
 @Composable
 fun CWMApp(

@@ -19,6 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.window.layout.DisplayFeature
 import com.kakapo.chat_detail.component.ChannelNameBar
+import com.kakapo.chat_detail.component.Message
 import com.kakapo.ui.custom_text_field.UserInput
 import com.kakapo.ui.utils.CWMContentType
 import com.kakapo.ui.utils.CWMNavigationType
@@ -32,7 +33,7 @@ internal fun ChatDetailRoute(
     navController: NavHostController,
     displayFeature: List<DisplayFeature>
 ) {
-    ChatDetailScreen(modifier = modifier)
+    ChatDetailScreen()
 }
 
 @Composable
@@ -76,7 +77,6 @@ private fun NotSelectedChatScreen() {
 @OptIn(ExperimentalLifecycleComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun ChatDetailScreen(
-    modifier: Modifier = Modifier,
     viewModel: ChatDetailViewModel = hiltViewModel(),
     chatId: Int = 0
 ) {
@@ -97,6 +97,12 @@ internal fun ChatDetailScreen(
                     .fillMaxSize()
                     .nestedScroll(scrollBehavior.nestedScrollConnection)
             ) {
+                Message(
+                    message = uiState.channelMessages,
+                    navigateToProfile = viewModel::navigateToProfilePage,
+                    scrollState = scrollState,
+                    modifier = Modifier.weight(1f)
+                )
                 UserInput(
                     onMessageSent = viewModel::observeMessage,
                     resetScroll = {

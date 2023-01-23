@@ -2,6 +2,7 @@ package com.kakapo.chat_detail
 
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class ChatDetailViewModelTest{
 
@@ -29,13 +30,23 @@ class ChatDetailViewModelTest{
     }
 
     @Test
-    fun `when user change the message value message in ui state changed`(){
+    fun `when user change the message value message in ui state changed`() {
         viewModel.observeMessage(SECOND_MESSAGE)
         val uiState = viewModel.uiState.value
         assertEquals(SECOND_MESSAGE, uiState.message)
     }
 
-    companion object{
+    @Test
+    fun `when user send a message the size of message is increase`() {
+        viewModel.observeMessage(FIRST_MESSAGE)
+        viewModel.observeMessage(SECOND_MESSAGE)
+        val uiState = viewModel.uiState.value
+        assertTrue(
+            message = "print value ${uiState.channelMessages}",
+            block = { uiState.channelMessages.isNotEmpty() })
+    }
+
+    companion object {
         private const val SELECTED_CHAT_ID = 1
         private const val SELECTED_CHAT_ID_2 = 2
         private const val FIRST_MESSAGE = "hello"

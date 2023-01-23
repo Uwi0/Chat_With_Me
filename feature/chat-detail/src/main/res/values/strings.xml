@@ -4,4 +4,6 @@
     <string name="author_me">me</string>
     <string name="info">Info</string>
     <string name="info_channel">Info Channel</string>
+    <string name="jump_to_bottom">Jump to Bottom</string>
+    <string name="attached_image">Attached Image</string>
 </resources>

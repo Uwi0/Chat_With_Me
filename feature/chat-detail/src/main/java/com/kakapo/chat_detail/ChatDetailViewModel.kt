@@ -19,9 +19,14 @@ class ChatDetailViewModel @Inject constructor(): ViewModel() {
         }
     }
 
-    fun observeMessage(message: String){
+    fun observeMessage(message: String) {
         _uiState.update { oldValue ->
             oldValue.copy(message = message)
         }
+        _uiState.value.addMessage()
+    }
+
+    fun navigateToProfilePage(author: String) {
+
     }
 }
